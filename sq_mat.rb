@@ -1,3 +1,18 @@
+def det(mat)
+  if mat.length == 1
+    return mat[0][0]
+  end
+return (mat[0].map.with_index{
+  |x,index| (-1)**index * x * det(
+    mat[1,mat.length].map{
+      |line| line.reject.with_index{
+        |a, ind| ind == index
+      }
+    }
+  )
+}).reduce{|res,a|res+a}
+end
+  
 matrix = []
 empty_flag = false
 quit_flag = false
@@ -26,7 +41,15 @@ loop do
     matrix.push row_int
   end
 end
-print [[123231,123123,12312],[],[]]
+print matrix
 puts ''
 
+l = matrix.length
+is_sq = matrix.reduce(true){|result,a| result && (a.length==l)}
+puts is_sq
+if is_sq
+  puts (det matrix)
+else
+  puts "Матрица не квадратная!"
+end
 
