@@ -46,7 +46,7 @@ puts ''
 
 l = matrix.length
 is_sq = matrix.reduce(true){|result,a| result && (a.length==l)}
-puts is_sq
+
 if is_sq
   puts (det matrix)
 else
